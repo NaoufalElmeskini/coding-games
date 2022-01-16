@@ -17,9 +17,9 @@ class VowelMagicTest {
 
     @Test
     void split() {
-        assertEquals("aebcd", VowelMagic.split("abcde"));
-        assertEquals("ooubnjr", VowelMagic.split("bonjour"));
-        assertEquals("aeieWht's th tm?", VowelMagic.split("What's the time?"));
+        assertEquals("aebcd", VowelMagic.rearrangeVowelsFirst("abcde"));
+        assertEquals("ooubnjr", VowelMagic.rearrangeVowelsFirst("bonjour"));
+        assertEquals("aeieWht's th tm?", VowelMagic.rearrangeVowelsFirst("What's the time?"));
     }
 
     @Test

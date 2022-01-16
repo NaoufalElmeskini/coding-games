@@ -20,8 +20,8 @@ public class CamelCase {
                 toCamelCase(text, "-")
                 ,"_"
         );
-
     }
+
     public static String toCamelCase(String text, String separator){
         List<String> words = new ArrayList<>( Arrays.asList(text.split(separator)) );
         String firstWord = words.remove(0);

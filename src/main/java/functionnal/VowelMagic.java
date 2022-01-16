@@ -1,9 +1,5 @@
 package functionnal;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 /**
  * Write a function that takes a string, breaks it up and returns it with vowels first,
  *  consonants second. For any character that's not a vowel
@@ -14,11 +10,15 @@ import java.util.stream.Collectors;
  * split("What's the time?") ➞ "aeieWht's th tm?"
  */
 public class VowelMagic {
-    private static String VOWELS = "aeiou";
+    private final static String VOWELS = "aeiou";
 
-    public static String split(String text) {
-        String result = text;
-
+    /**
+     * name changed from 'split' to 'rearrangeVowelsFirst' for precision
+     * @param text text to rearrange
+     * @return rearranged text, with vowels first, and consonnants after
+     */
+    public static String rearrangeVowelsFirst(String text) {
+        String result;
         String vowlPart = getVowelPart(text);
         String consonantPart = getConsonantPart(text);
 
@@ -27,25 +27,25 @@ public class VowelMagic {
         return result;
     }
 
-    public static String getConsonantPart(String text) {
-        List<String> textAsStringList = new ArrayList<>();
-        text.chars().forEach(c -> textAsStringList.add(Character.toString(c)));
-
-        return textAsStringList.stream()
-                .filter(VowelMagic::isVowel)
+    public static String getVowelPart(String text) {
+        return text.chars()
+                .filter(c -> isVowel((char) c))
+                .mapToObj(Character::toString)
                 .reduce("", String::concat);
     }
 
-    public static boolean isVowel(String string) {
-        return VOWELS.contains(string);
+    private static boolean isVowel(char character) {
+        return Character.isLetter(character) &&
+                VOWELS.contains(Character.toString(character));
+    }
+    private static boolean isConsonnant(char character) {
+        return !isVowel(character);
     }
 
-    public static String getVowelPart(String text) {
-        List<String> textAsStringList = new ArrayList<>();
-        text.chars().forEach(c -> textAsStringList.add(Character.toString(c)));
-
-        return textAsStringList.stream()
-                .filter(VowelMagic::isVowel)
+    public static String getConsonantPart(String text) {
+        return text.chars()
+                .filter(c -> isConsonnant((char) c))
+                .mapToObj(Character::toString)
                 .reduce("", String::concat);
     }
 }
